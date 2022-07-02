@@ -22,7 +22,6 @@ jobs:
         with:
           repository: newdigate/teensy-x86-stubs
           path: teensy-x86-stubs
-          ref: feature/correct-print-interface
 
       - name: Make and Install Dependencies
         run: |
