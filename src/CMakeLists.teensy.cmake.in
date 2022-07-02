@@ -1,7 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
-project(launch_ctrl)
-
-teensy_include_directories(../../src)
+project(teensy_gfx)
 
 set(SOURCE_FILES
 		glcdfont.c
