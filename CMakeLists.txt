@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(teensy_gfx_src CXX)
+project(teensy_gfx_src C CXX)
 IF (DEFINED BUILD_FOR_TEENSY)
     import_arduino_library(cores ${COREPATH})
 ENDIF()
