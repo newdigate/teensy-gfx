@@ -1,4 +1,7 @@
 cmake_minimum_required(VERSION 3.5)
 project(teensy_gfx_src CXX)
+IF (DEFINED BUILD_FOR_TEENSY)
+    import_arduino_library(cores ${COREPATH})
+ENDIF()
 add_subdirectory(src)
-#add_subdirectory(examples/basic)
+add_subdirectory(examples/basic)
