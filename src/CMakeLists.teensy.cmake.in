@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.10)
 project(teensy_gfx)
 
+import_arduino_library(cores ${COREPATH})
+
 set(SOURCE_FILES
 		glcdfont.c
 		View.cpp
