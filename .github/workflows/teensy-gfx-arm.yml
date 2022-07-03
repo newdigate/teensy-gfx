@@ -32,8 +32,8 @@ jobs:
           fetch-depth: 1
           ref: master
 
-      - name: ls /__w/
-        run: ls /__w/
+      - name: ls /__w/teensy-gfx
+        run: ls /__w/teensy-gfx
 
       - name: Configure CMake
         run: |
