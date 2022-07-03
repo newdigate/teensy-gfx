@@ -35,7 +35,7 @@ jobs:
       - name: Configure CMake
         run: |
           cd /__w/ && mkdir cmake-build && cd cmake-build
-          cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=$BUILD_TYPE -DCMAKE_TOOLCHAIN_FILE:FILEPATH="/__w/cmake/toolchains/teensy41.cmake"
+          cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=$BUILD_TYPE -DCMAKE_TOOLCHAIN_FILE:FILEPATH="/__w/teensy-gfx/cmake/toolchains/teensy41.cmake"
 
       - name: Build
         working-directory: ${{github.workspace}}
