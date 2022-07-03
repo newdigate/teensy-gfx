@@ -32,13 +32,10 @@ jobs:
           fetch-depth: 1
           ref: master
 
-      - name: ls /__w/teensy-gfx
-        run: ls /__w/teensy-gfx
-
       - name: Configure CMake
         run: |
-          cd /__w/ && mkdir cmake-build && cd cmake-build
-          cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=$BUILD_TYPE -DCMAKE_TOOLCHAIN_FILE:FILEPATH="/__w/teensy-gfx/cmake/toolchains/teensy41.cmake"
+          cd /__w/teensy-gfx/teensy-gfx && mkdir cmake-build && cd cmake-build
+          cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=$BUILD_TYPE -DCMAKE_TOOLCHAIN_FILE:FILEPATH="/__w/teensy-gfx/teensy-gfx/cmake/toolchains/teensy41.cmake"
 
       - name: Build
         working-directory: ${{github.workspace}}
