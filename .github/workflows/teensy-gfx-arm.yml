@@ -14,7 +14,7 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: nicnewdigate/docker-teensy-cmake-macros:0.4
+    container: nicnewdigate/docker-teensy-cmake-macros:0.5
     steps:
       - name: Create Build directory
         # Some projects don't allow in-source building, so create a separate build directory
