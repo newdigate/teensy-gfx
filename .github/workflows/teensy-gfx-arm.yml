@@ -32,6 +32,9 @@ jobs:
           fetch-depth: 1
           ref: master
 
+      - name: ls /__w/
+        run: ls /__w/
+
       - name: Configure CMake
         run: |
           cd /__w/ && mkdir cmake-build && cd cmake-build
