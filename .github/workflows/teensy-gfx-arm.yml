@@ -24,9 +24,14 @@ jobs:
           ls ${{github.workspace}}
 
       - uses: actions/checkout@v2
+        with:
+          token: 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
+          repository: newdigate/teensy-gfx.git
+          ref: main
 
       - uses: actions/checkout@v2
         with:
+          token: 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
           repository: PaulStoffregen/cores.git
           path: ${{github.workspace}}/deps/cores
           fetch-depth: 1
