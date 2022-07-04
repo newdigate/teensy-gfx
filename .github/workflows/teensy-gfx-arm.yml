@@ -41,7 +41,7 @@ jobs:
           cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=$BUILD_TYPE -DCMAKE_TOOLCHAIN_FILE:FILEPATH="/__w/teensy-gfx/teensy-gfx/cmake/toolchains/teensy41.cmake"
 
       - name: Build
-        working-directory: ${{github.workspace}}
+        working-directory: /__w/teensy-gfx/teensy-gfx/cmake-build
         shell: bash
         # Execute the build.  You can specify a specific target with "--target <NAME>"
         run: cmake --build . --target teensy_gfx.o --config $BUILD_TYPE
