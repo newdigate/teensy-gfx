@@ -4,7 +4,7 @@ set(CMAKE_EXE_LINKER_FLAGS "--specs=nano.specs" CACHE INTERNAL "")
 #teensy compiler options
 set(COMPILERPATH "/home/runner/work/gcc-arm-none-eabi-10.3-2021.10/bin/")
 #set(COMPILERPATH "/Applications/ARM_9_3/bin/")
-set(DEPSPATH "__w/teensy-gfx/teensy-gfx/deps")
+set(DEPSPATH "/__w/teensy-gfx/teensy-gfx/deps")
 #set(DEPSPATH "/Users/nicholasnewdigate/Development/github/newdigate/temp_dep")
 set(COREPATH "${DEPSPATH}/cores/teensy4/")
 set(BUILD_FOR_TEENSY ON)
