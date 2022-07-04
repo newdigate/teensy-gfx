@@ -31,7 +31,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           repository: PaulStoffregen/cores.git
-          path: /__w/teensy-gfx/teensy-gfx/cores
+          path: /__w/teensy-gfx/teensy-gfx/deps/cores
           fetch-depth: 1
           ref: master
 
