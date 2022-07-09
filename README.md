@@ -7,9 +7,14 @@ A portable C++17 TFT display graphics abstractions library based on [ST7735_t3](
 
 Adds ```View``` class with adafruit gfx drawing routines used by other libraries of mine to reduce code duplication
 
-* **please note**:
+## implement a custom RGB565 graphics device (or view)
+* implement a class which inherits from ```View``` 
+* override ```void Pixel(int16_t x, int16_t y, uint16_t color)```
+
+## please note
   * this library is an **experimental** abstraction adaption and many functions may not be supported.   
 
+## approximate interface
 ```c++
 class View {
 public:
@@ -25,9 +30,8 @@ public:
     uint16_t    rowStart();
     uint16_t    colStart();
 
-    // from Adafruit_GFX.h
-    int16_t     width() const;
-    int16_t     height() const;
+    int16_t     width();
+    int16_t     height();
     uint8_t     getRotation();
 
     void        drawCircle(int16_t x0, int16_t y0, int16_t r, uint16_t color);
@@ -91,9 +95,9 @@ public:
     void        writeRect(int16_t x, int16_t y, int16_t w, int16_t h, const uint16_t *pcolors);
 
     void        setFrameBuffer(uint16_t *frame_buffer);
-    uint8_t     useFrameBuffer(bool b)  
-    void        freeFrameBuffer()                               
-    void        updateScreen() { }                                
+    uint8_t     useFrameBuffer(bool b);  
+    void        freeFrameBuffer();                              
+    void        updateScreen();                            
     bool        updateScreenAsync(bool update_cont = false);                  
     void        waitUpdateAsyncComplete() ;
     void        endUpdateAsync() ;
