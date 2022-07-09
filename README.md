@@ -3,7 +3,7 @@
 [![basic-example-linux](https://github.com/newdigate/teensy-gfx/workflows/basic-example/badge.svg)](https://github.com/newdigate/teensy-gfx/actions)
 
 # teensy gfx
-A portable C++17 TFT display graphics abstractions library based on [ST7735_t3](https://github.com/PaulStoffregen/ST7735_t3) and [adafruit-GFX](https://github.com/adafruit/Adafruit-GFX-Library). 
+A portable c++17 TFT display graphics abstractions library based on [ST7735_t3](https://github.com/PaulStoffregen/ST7735_t3) and [adafruit-GFX](https://github.com/adafruit/Adafruit-GFX-Library). 
 
 Adds ```View``` class with adafruit gfx drawing routines used by other libraries of mine to reduce code duplication
 
