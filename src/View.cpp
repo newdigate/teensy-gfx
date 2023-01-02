@@ -44,10 +44,10 @@ extern "C" const unsigned char glcdfont[];
 
 void View::drawPixel(int16_t x, int16_t y, uint16_t color)
 {
+    if((x < _displayclipx1) ||(x >= _displayclipx2) || (y < _displayclipy1) || (y >= _displayclipy2)) return;
+
     x += _originx;
     y += _originy;
-
-    if((x < _displayclipx1) ||(x >= _displayclipx2) || (y < _displayclipy1) || (y >= _displayclipy2)) return;
 
     Pixel(x,y, color);
 }
@@ -55,27 +55,29 @@ void View::drawPixel(int16_t x, int16_t y, uint16_t color)
 
 void View::drawFastVLine(int16_t x, int16_t y, int16_t h, uint16_t color)
 {
-    x+=_originx;
-    y+=_originy;
     // Rectangular clipping
     if((x < _displayclipx1) || (x >= _displayclipx2) || (y >= _displayclipy2)) return;
     if(y < _displayclipy1) { h = h - (_displayclipy1 - y); y = _displayclipy1;}
     if((y+h-1) >= _displayclipy2) h = _displayclipy2-y;
     if(h<1) return;
+
+    x+=_originx;
+    y+=_originy;
+
     VLine(x,y, h, color);
 }
 
 
 void View::drawFastHLine(int16_t x, int16_t y, int16_t w, uint16_t color)
 {
-    x+=_originx;
-    y+=_originy;
-
     // Rectangular clipping
     if((y < _displayclipy1) || (x >= _displayclipx2) || (y >= _displayclipy2)) return;
     if(x<_displayclipx1) { w = w - (_displayclipx1 - x); x = _displayclipx1; }
     if((x+w-1) >= _displayclipx2)  w = _displayclipx2-x;
     if (w<1) return;
+
+    x+=_originx;
+    y+=_originy;
 
     HLine(x,y,w, color);
 }
@@ -88,8 +90,6 @@ void View::fillScreen(uint16_t color)
 // fill a rectangle
 void View::fillRect(int16_t x, int16_t y, int16_t w, int16_t h, uint16_t color)
 {
-    x+=_originx;
-    y+=_originy;
 
     // Rectangular clipping (drawChar w/big text requires this)
     if((x >= _displayclipx2) || (y >= _displayclipy2)) return;
@@ -98,6 +98,9 @@ void View::fillRect(int16_t x, int16_t y, int16_t w, int16_t h, uint16_t color)
     if(y < _displayclipy1) {	h -= (_displayclipy1 - y); y = _displayclipy1; 	}
     if((x + w - 1) >= _displayclipx2)  w = _displayclipx2  - x;
     if((y + h - 1) >= _displayclipy2) h = _displayclipy2 - y;
+
+    x+=_originx;
+    y+=_originy;
 
     for (int i=x; i < x+w; i++)
         for (int j = y; j < y+h; j++) {
