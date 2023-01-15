@@ -11,6 +11,11 @@ Adds ```View``` class with adafruit gfx drawing routines used by other libraries
 * implement a class which inherits from ```View``` 
 * override ```void Pixel(int16_t x, int16_t y, uint16_t color)```
 
+# projects / libraries using teensy-gfx
+* [teensy-gfx-controls](https://github.com/newdigate/teensy-gfx-controls)
+
+  ![scene menus](https://github.com/newdigate/teensy-gfx-controls/raw/main/docs/scene_menus.gif)
+
 ## please note
   * this library is an **experimental** abstraction adaption and many functions may not be supported.   
 
