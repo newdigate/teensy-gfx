@@ -759,13 +759,13 @@ int16_t View::drawString1(char string[], int16_t len, int poX, int poY)
         //if (poY+cheight-baseline >_height) poY = _height - cheight;
     }
     if(font == NULL){
-        for(uint8_t i = 0; i < len-2; i++){
+        for(uint8_t i = 0; i < len; i++){
             drawChar((int16_t) (poX+sumX), (int16_t) poY, string[i], textcolor, textbgcolor, textsize_x, textsize_y);
-            sumX += cwidth/(len-2) + padding;
+            sumX += cwidth/(len) + padding;
         }
     } else {
         setCursor(poX, poY);
-        for(uint8_t i = 0; i < len-2; i++){
+        for(uint8_t i = 0; i < len; i++){
             drawFontChar(string[i]);
             setCursor(cursor_x, cursor_y);
         }
