@@ -683,13 +683,12 @@ int16_t View::drawFloat(float floatNumber, int dp, int poX, int poY)
 // Without font number, uses font set by setTextFont()
 int16_t View::drawString(const String& string, int poX, int poY)
 {
-    int16_t len = string.length() + 2;
     return drawString1((char*)string.c_str(), string.length(), poX, poY);
 }
 
 int16_t View::drawString1(char string[], int16_t len, int poX, int poY)
 {
-    int16_t sumX = 0;
+    int16_t sumX = 0, currentX = 0;
     uint8_t padding = 1/*, baseline = 0*/;
 
     uint16_t cwidth = strPixelLen(string); // Find the pixel width of the string in the font
@@ -760,8 +759,13 @@ int16_t View::drawString1(char string[], int16_t len, int poX, int poY)
     }
     if(font == NULL){
         for(uint8_t i = 0; i < len; i++){
-            drawChar((int16_t) (poX+sumX), (int16_t) poY, string[i], textcolor, textbgcolor, textsize_x, textsize_y);
+            if (wrap && ((currentX + textsize_x) >= _width-1)) { // Off right?
+                currentX = 0;                                       // Reset x to zero,
+                poY += textsize_y * 8; // advance y one line
+            }
+            drawChar((int16_t) (poX+currentX), (int16_t) poY, string[i], textcolor, textbgcolor, textsize_x, textsize_y);
             sumX += cwidth/(len) + padding;
+            currentX += textsize_y * 6;
         }
     } else {
         setCursor(poX, poY);
@@ -816,7 +820,6 @@ void View::drawChar(int16_t x, int16_t y, unsigned char c,
        ((x + 6 * size_x - 1) < 0) || // Clip left  TODO: is this correct?
        ((y + 8 * size_y - 1) < 0))   // Clip top   TODO: is this correct?
         return;
-
     if (fgcolor == bgcolor) {
         // This transparent approach is only about 20% faster
         if ((size_x == 1) && (size_y == 1)) {
@@ -969,6 +972,7 @@ void View::drawChar(int16_t x, int16_t y, unsigned char c,
 
         }
     }
+
 }
 
 void View::setFont(const ILI9341_t3_font_t &f) {
