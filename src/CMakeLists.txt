@@ -15,5 +15,6 @@ set(HEADER_FILES
 IF (DEFINED BUILD_FOR_TEENSY)
     include(CMakeLists.teensy.cmake.in)
 ELSE()
+    add_definitions(-DBUILD_FOR_LINUX)
     include(CMakeLists.linux.cmake.in)
 ENDIF()

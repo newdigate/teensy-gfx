@@ -9,6 +9,7 @@ ELSE()
     find_package(teensy_x86_stubs)
     include_directories(${teensy_x86_stubs_INCLUDE_DIR})
 
+    add_definitions(-DBUILD_FOR_LINUX)
     add_definitions(-fms-extensions)
     add_definitions(-DArduino=146)
     include_directories(../../src)
