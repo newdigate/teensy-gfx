@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.5)
 project(teensy_gfx_src_root C CXX)
 cmake_policy(SET CMP0077 NEW)
+set(CMAKE_CXX_STANDARD 17)
 IF (DEFINED BUILD_FOR_TEENSY)
     import_arduino_library(cores ${COREPATH})
 ELSE()
