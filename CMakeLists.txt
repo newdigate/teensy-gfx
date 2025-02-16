@@ -6,7 +6,7 @@ IF (DEFINED BUILD_FOR_TEENSY)
     import_arduino_library(cores ${COREPATH})
 ELSE()
     include(cmake_declare_and_fetch.cmake.in)
-    DeclareAndFetch(teensy_x86_stubs            https://github.com/newdigate/teensy-x86-stubs.git noinstall src)
+    DeclareAndFetch(teensy_x86_stubs            https://github.com/newdigate/teensy-x86-stubs.git main src)
 ENDIF()
 
 add_subdirectory(src)
