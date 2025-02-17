@@ -22,6 +22,11 @@
 #include "Arduino.h"
 #include <cmath>
 #include "ILI9341_fonts.h"
+#ifndef BUILD_FOR_LINUX
+#include "Adafruit_ST7735.h"
+#endif
+
+#ifdef BUILD_FOR_LINUX // these are defined in adafruit_st77xx libraries for arduino
 
 // Map fonts that were modified back to the ILI9341 font
 #define ST7735_t3_font_t ILI9341_t3_font_t
@@ -44,6 +49,7 @@ typedef struct {
     uint8_t   last;        ///< ASCII extents (last char)
     uint8_t   yAdvance;    ///< Newline distance (y axis)
 } GFXfont;
+#endif
 
 #ifndef tgfx_swap
 #define tgfx_swap(a, b) { typeof(a) t = a; a = b; b = t; }
@@ -98,7 +104,9 @@ public:
             drawPixel(int16_t x, int16_t y, uint16_t color),
             drawFastVLine(int16_t x, int16_t y, int16_t h, uint16_t color),
             drawFastHLine(int16_t x, int16_t y, int16_t w, uint16_t color),
-            fillRect(int16_t x, int16_t y, int16_t w, int16_t h, uint16_t color);
+            fillRect(int16_t x, int16_t y, int16_t w, int16_t h, uint16_t color),
+            drawRect(int16_t x, int16_t y, int16_t w, int16_t h, uint16_t color),
+            drawChar(int16_t x, int16_t y, unsigned char c, uint16_t color, uint16_t bg, uint8_t size_x, uint8_t size_y);
 
     inline void fillWindow(uint16_t color) {fillScreen(color);}
     virtual void setRotation(uint8_t r);
@@ -122,8 +130,7 @@ public:
     void fillRoundRect(int16_t x0, int16_t y0, int16_t w, int16_t h, int16_t radius, uint16_t color);
     void drawBitmap(int16_t x, int16_t y, const uint8_t *bitmap, int16_t w, int16_t h, uint16_t color);
     virtual void drawLine(int16_t x0, int16_t y0, int16_t x1, int16_t y1, uint16_t color);
-    void drawRect(int16_t x, int16_t y, int16_t w, int16_t h, uint16_t color);
-    void drawChar(int16_t x, int16_t y, unsigned char c, uint16_t color, uint16_t bg, uint8_t size_x, uint8_t size_y);
+
     void inline drawChar(int16_t x, int16_t y, unsigned char c, uint16_t color, uint16_t bg, uint8_t size) { drawChar(x, y, c, color, bg, size, size);}
 
     static const int16_t CENTER = 9998;
