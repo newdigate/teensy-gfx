@@ -13,8 +13,10 @@ set(HEADER_FILES
 )
 
 IF (DEFINED BUILD_FOR_TEENSY)
+    message(INFO " Teensy GFX - Compile for Teensy")
     include(CMakeLists.teensy.cmake.in)
 ELSE()
+    message(INFO " Teensy GFX - Compile for linux")
     add_definitions(-DBUILD_FOR_LINUX)
     include(CMakeLists.linux.cmake.in)
 ENDIF()
