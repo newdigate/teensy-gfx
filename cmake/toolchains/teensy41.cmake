@@ -8,16 +8,9 @@ set(COMPILERPATH "/opt/gcc-arm-none-eabi-10.3-2021.10/bin/")
 add_definitions(-DTEENSY_VERSION=${TEENSY_VERSION})
 include(FetchContent)
 
-FetchContent_Declare(teensy_cores
-        GIT_REPOSITORY https://github.com/PaulStoffregen/cores
-        GIT_TAG        master
-)
-FetchContent_MakeAvailable(teensy_cores)
-
 FetchContent_Declare(teensy_cmake_macros
         GIT_REPOSITORY https://github.com/newdigate/teensy-cmake-macros
         GIT_TAG        noinstall
 )
 FetchContent_MakeAvailable(teensy_cmake_macros)
-include(${teensy_cmake_macros_SOURCE_DIR}/CMakeLists.txt)
-set(BUILD_FOR_TEENSY ON)
+include(${teensy_cmake_macros_SOURCE_DIR}/CMakeLists.include.txt)
