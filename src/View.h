@@ -23,7 +23,11 @@
 #include <cmath>
 #include "ILI9341_fonts.h"
 #ifndef BUILD_FOR_LINUX
+#if USE_ADAFUIT_ST7735
 #include "Adafruit_ST7735.h"
+#else
+#include "ST7735_t3.h"
+#endif
 #endif
 
 #ifdef BUILD_FOR_LINUX // these are defined in adafruit_st77xx libraries for arduino
