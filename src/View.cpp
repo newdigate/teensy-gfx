@@ -917,57 +917,15 @@ void View::drawChar(int16_t x, int16_t y, unsigned char c,
            ((y + 8 * size_y - 1) < _displayclipy1))   // Clip top   TODO: this is not correct
             return;
 
+        // need to build actual pixel rectangle we will output into.
+        int16_t y_char_top = y;	// remember the y
+        int16_t w =  6 * size_x;
+        int16_t h = 8 * size_y;
 
-#ifdef ENABLE_ST77XX_FRAMEBUFFER
-        if (_use_fbtft) {
-			uint16_t * pfbPixel_row = &_pfbtft[ y*_width + x];
-			for (yc=0; (yc < 8) && (y < _displayclipy2); yc++) {
-				for (yr=0; (yr < size_y) && (y < _displayclipy2); yr++) {
-					x = x_char_start; 		// get our first x position...
-					if (y >= _displayclipy1) {
-						uint16_t * pfbPixel = pfbPixel_row;
-						for (xc=0; xc < 5; xc++) {
-							if (glcdfont[c * 5 + xc] & mask) {
-								color = fgcolor;
-							} else {
-								color = bgcolor;
-							}
-							for (xr=0; xr < size_x; xr++) {
-								if ((x >= _displayclipx1) && (x < _displayclipx2)) {
-									*pfbPixel = color;
-								}
-								pfbPixel++;
-								x++;
-							}
-						}
-						for (xr=0; xr < size_x; xr++) {
-							if ((x >= _displayclipx1) && (x < _displayclipx2)) {
-								*pfbPixel = bgcolor;
-							}
-							pfbPixel++;
-							x++;
-						}
-					}
-					pfbPixel_row += _width; // setup pointer to
-					y++;
-				}
-				mask = mask << 1;
-			}
-
-		} else
-#endif
-        {
-            // need to build actual pixel rectangle we will output into.
-            int16_t y_char_top = y;	// remember the y
-            int16_t w =  6 * size_x;
-            int16_t h = 8 * size_y;
-
-            if(x < _displayclipx1) {	w -= (_displayclipx1-x); x = _displayclipx1; 	}
-            if((x + w - 1) >= _displayclipx2)  w = _displayclipx2  - x;
-            if(y < _displayclipy1) {	h -= (_displayclipy1 - y); y = _displayclipy1; 	}
-            if((y + h - 1) >= _displayclipy2) h = _displayclipy2 - y;
-
-        }
+        if(x < _displayclipx1) {	w -= (_displayclipx1-x); x = _displayclipx1; 	}
+        if((x + w - 1) >= _displayclipx2)  w = _displayclipx2  - x;
+        if(y < _displayclipy1) {	h -= (_displayclipy1 - y); y = _displayclipy1; 	}
+        if((y + h - 1) >= _displayclipy2) h = _displayclipy2 - y;
     }
 }
 
@@ -2231,11 +2189,11 @@ bool View::gfxFontLastCharPosFG(int16_t x, int16_t y) {
     return ((gfxFont->bitmap[glyph->bitmapOffset + (pixel_bit_offset >> 3)]) & (0x80 >> (pixel_bit_offset & 0x7)));
 }
 
-    size_t View::write(uint8_t c) {
+    int View::write(uint8_t c) {
         return write(&c, 1);
     }
 
-    size_t View::write(const uint8_t *buffer, size_t size)
+    int View::write(const uint8_t *buffer, size_t size)
     {
         // Lets try to handle some of the special font centering code that was done for default fonts.
         if (_center_x_text || _center_y_text ) {
