@@ -2193,11 +2193,11 @@ bool View::gfxFontLastCharPosFG(int16_t x, int16_t y) {
     return ((gfxFont->bitmap[glyph->bitmapOffset + (pixel_bit_offset >> 3)]) & (0x80 >> (pixel_bit_offset & 0x7)));
 }
 
-    int View::write(uint8_t c) {
+    size_t View::write(uint8_t c) {
         return write(&c, 1);
     }
 
-    int View::write(const uint8_t *buffer, size_t size)
+    size_t View::write(const uint8_t *buffer, size_t size)
     {
         // Lets try to handle some of the special font centering code that was done for default fonts.
         if (_center_x_text || _center_y_text ) {

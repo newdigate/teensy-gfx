@@ -225,8 +225,8 @@ public:
     inline uint16_t Color565(uint8_t r, uint8_t g, uint8_t b) {
         return ((b & 0xF8) << 8) | ((g & 0xFC) << 3) | (r >> 3);
     }
-    int write(uint8_t c) override ;
-    int write(const uint8_t *buffer, size_t size) override;
+    size_t write(uint8_t c) override ;
+    size_t write(const uint8_t *buffer, size_t size) override;
 
 protected:
     // Pass 8-bit (each) R,G,B, get back 16-bit packed color
