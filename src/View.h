@@ -23,7 +23,7 @@
 #include <cmath>
 #include "ILI9341_fonts.h"
 #ifndef BUILD_FOR_LINUX
-#ifndef USE_ST7735_t3
+#ifdef USE_Adafruit_ST7735
 #include "Adafruit_ST7735.h"
 #else
 #include "ST7735_t3.h"
